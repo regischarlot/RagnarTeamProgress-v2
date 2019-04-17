@@ -1,0 +1,95 @@
+<div style="width:100%;">
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z0">
+  
+      <ng-container matColumnDef="nameColumn">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+              <mat-form-field floatLabel='never'>
+                  <input matInput [formControl]="row.validator.controls['name']" type="string" placeholder="">
+              </mat-form-field>
+          </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="displayNameColumn">
+          <mat-header-cell *matHeaderCellDef> Display Name </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+              <mat-form-field floatLabel='never'>
+                  <input matInput [formControl]="row.validator.controls['displayName']" type="string" placeholder="">
+              </mat-form-field>
+          </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="paceColumn">
+        <mat-header-cell *matHeaderCellDef> Pace </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['pace']" type="string" placeholder="">
+            </mat-form-field>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="cellColumn">
+          <mat-header-cell *matHeaderCellDef> Cell </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+              <mat-form-field floatLabel='never'>
+                  <input matInput [formControl]="row.validator.controls['cell']" type="string" placeholder="">
+              </mat-form-field>
+          </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="emailColumn">
+          <mat-header-cell *matHeaderCellDef> email </mat-header-cell>
+          <mat-cell *matCellDef="let row"> 
+              <mat-form-field floatLabel='never'>
+                  <input matInput [formControl]="row.validator.controls['email']" type="string" placeholder="">
+              </mat-form-field>
+          </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="emergencyContactColumn">
+          <mat-header-cell *matHeaderCellDef> Emergency Contact </mat-header-cell>
+          <mat-cell *matCellDef="let row"> 
+              <mat-form-field floatLabel='never'>
+                  <input matInput [formControl]="row.validator.controls['emergencyContact']" type="string" placeholder="">
+              </mat-form-field>
+          </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="typeColumn">
+          <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+          <mat-cell *matCellDef="let row"> 
+              <mat-form-field floatLabel='never'>
+
+                  <mat-select [formControl]="row.validator.controls['type']" >
+                      <mat-option [value]="0">Runner</mat-option>
+                      <mat-option [value]="1">Driver</mat-option>
+                  </mat-select>
+
+              </mat-form-field>
+          </mat-cell>
+      </ng-container>
+  
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button (click)="dataSource.createNew()"><mat-icon>playlist_add</mat-icon></button>
+        <button mat-icon-button (click)="LoadData()"><mat-icon>refresh</mat-icon></button>
+    </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button *ngIf="!row.editing && selectedRowIndex == row.id" mat-icon-button focusable="false" (click)="EditRow(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button *ngIf="row.editing" mat-icon-button focusable="false" (click)="SaveRowEdit(row)">
+          <mat-icon>save_alt</mat-icon>
+        </button>
+        <button *ngIf="row.editing" mat-icon-button focusable="false" (click)="CancelRowEdit(row)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)" (dblclick)="EditRow(row)"></mat-row>
+    </mat-table>
+  </div>
+  

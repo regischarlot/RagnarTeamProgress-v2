@@ -1,0 +1,33 @@
+
+.SideNavigationList {
+  //display: flex;
+  align-items: center;
+  justify-content: center;
+  background:dimgray;
+  padding-top:0px;
+}
+
+.SideNavigationTarget
+{
+  cursor: pointer;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+:host /deep/ .mat-list-item-content {
+  padding: 10!important;
+}
+
+.SideNavigationLogoff {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+
+.SideNavigationBottomStrip {
+  background:black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+

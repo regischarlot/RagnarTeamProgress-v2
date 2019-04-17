@@ -1,0 +1,130 @@
+<div style="width:100%;">
+  <div>
+    
+  </div>
+
+  <mat-divider style="width:100%; margin-top:10px;"></mat-divider>
+
+  <mat-table #table [dataSource]="dataSource" class="mat-elevation-z0">
+
+    <ng-container matColumnDef="legMapColumn">
+        <mat-header-cell *matHeaderCellDef> Map </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['legMap']" type="string" placeholder="map">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="distanceColumn">
+        <mat-header-cell *matHeaderCellDef> Distance </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['distance']" type="number" placeholder="distance">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="difficultyColumn">
+        <mat-header-cell *matHeaderCellDef> Difficulty </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['difficulty']" type="number" placeholder="difficulty">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="runner1Name">
+        <mat-header-cell *matHeaderCellDef> Runner 1 </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['runner1Name']" type="string" placeholder="runner 1">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="runner2Name">
+        <mat-header-cell *matHeaderCellDef> Runner 2 </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['runner2Name']" type="string" placeholder="runner 2">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="runner1Cell">
+        <mat-header-cell *matHeaderCellDef> Cell Runner 1 </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['runner1Cell']" type="string" placeholder="cell">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pace">
+        <mat-header-cell *matHeaderCellDef> Pace </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['pace']" type="number" placeholder="pace">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startTime">
+        <mat-header-cell *matHeaderCellDef> Leg Start </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['startTime']" type="string" placeholder="start time">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endTime">
+        <mat-header-cell *matHeaderCellDef> Leg End </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['endTime']" type="string" placeholder="end time">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="legTime">
+        <mat-header-cell *matHeaderCellDef> Leg Time </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['legTime']" type="string" placeholder="leg time">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="truePace">
+        <mat-header-cell *matHeaderCellDef> Leg Pace </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-form-field floatLabel='never'>
+                <input matInput [formControl]="row.validator.controls['truePace']" type="string" placeholder="leg pace">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
+<ng-container matColumnDef="actionsColumn">
+    <mat-header-cell *matHeaderCellDef>
+        <mat-icon>edit</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button *ngIf="!row.editing && selectedRowIndex == row.id" mat-icon-button color="primary" focusable="false" (click)="EditRow(row)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="SaveRowEdit(row)">
+        <mat-icon>save_alt</mat-icon>
+      </button>
+      <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="CancelRowEdit(row)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)" (dblclick)="EditRow(row)"></mat-row>
+  </mat-table>
+</div>

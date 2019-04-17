@@ -1,0 +1,38 @@
+<div 
+  style="width:100%; height:100%;"
+  class="container" 
+  fxLayout="row" 
+  fxLayout.xs="column" 
+  fxLayoutWrap 
+  fxLayoutGap="0.5%" 
+  fxLayoutAlign="left">
+  <div fxFlex="50%">
+    <mat-table #table [dataSource]="_exchanges" class="mat-elevation-z0">
+      <ng-container matColumnDef="idColumn">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="nameColumn">
+        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="addressColumn">
+        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.address}}</mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'is-white': row.van == 1, 'is-green': row.van == 2, 'highlight': selectedRowIndex == row.id}" (click)="highlight(row)"></mat-row>
+    </mat-table>
+  </div>
+  <div fxFlex="50%">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]=16>
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </div>
+</div>
+
+
+

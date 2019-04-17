@@ -1,0 +1,52 @@
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    height: 30px !important;
+}
+
+.mat-row {
+    height: 30px !important;
+    min-height: 30px !important;
+    border-bottom-width: 1;
+}
+
+.highlight{
+    background: #ffad77; 
+}
+    
+.is-white:not(.highlight) {
+    background: white; 
+}
+    
+.is-green:not(.highlight) {
+    background: #cbffca; 
+}
+    
+mat-row:not(.highlight):hover {
+    background: #f0f0f0;
+}
+
+.mat-column-idColumn {
+    min-width: 40px !important;
+    max-width: 40px;
+    width:40px;
+}
+  
+.mat-column-nameColumn {
+    min-width: 35% !important;
+    max-width: 35%;
+    width:35%;
+}
+  
+.mat-column-addressColumn {
+    min-width: 65% !important;
+    max-width: 65%;
+    width:65%;
+}
+
+agm-map {
+    height: 100%;
+  }

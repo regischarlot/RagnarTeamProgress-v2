@@ -1,0 +1,102 @@
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    height: 30px !important;
+}
+
+.mat-row {
+    height: 30px !important;
+    min-height: 30px !important;
+    border-bottom-width: 1;
+}
+
+.mat-column-actionsColumn {
+    flex: 0 0 50px !important;
+}
+
+.highlight{
+    background: #ffad77; 
+}
+
+mat-row:not(.highlight):hover {
+    background: #f0f0f0;
+}
+
+.mat-column-nameColumn {
+    min-width: 200px !important;
+    overflow:visible;
+}
+  
+.mat-column-displayNameColumn {
+    min-width: 200px !important;
+    overflow:visible;
+}
+  
+.mat-column-paceColumn {
+    min-width: 60px !important;
+    max-width: 60px;
+    width:60px;
+    text-align: right;
+}
+
+.mat-column-cellColumn {
+    min-width: 150px !important;
+    max-width: 150px;
+    width:100px;
+}
+
+.mat-column-emailColumn {
+    min-width: 200px !important;
+    max-width: 200px;
+    width:200px;
+}
+
+.mat-column-emergencyContactColumn {
+    min-width: 200px !important;
+    overflow:visible;
+}
+
+.mat-column-typeColumn {
+    min-width: 70px !important;
+    max-width: 70px;
+    width:70px;
+    text-align: right;
+}
+
+
+/deep/ .mat-form-field {
+    width:100% !important; 
+    padding-right: 4px;
+  }
+  
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  
+  input[type=number] {
+      -moz-appearance:textfield;
+  }
+  
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-clear-button {
+      display: none;
+      -webkit-appearance: none;
+  }
+  
+  .mat-input-element:disabled {
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  :host /deep/ .mat-select-disabled .mat-select-value-text {
+    color: rgba(0, 0, 0, 1) !important;
+  }
+  
+  :host /deep/ .mat-form-field-disabled .mat-form-field-underline {
+    background-image: none !important;
+  }
+  

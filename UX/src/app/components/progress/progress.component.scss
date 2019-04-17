@@ -1,0 +1,42 @@
+.mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    height: 30px !important;
+}
+
+.mat-row {
+    height: 30px !important;
+    min-height: 30px !important;
+    border-bottom-width: 0;
+}
+
+.mat-column-legMapColumn {
+    flex: 0 0 60px !important;
+    white-space: unset !important;
+}
+
+.mat-column-distanceColumn {
+    flex: 0 0 60px !important;
+    white-space: unset !important;
+    text-align: right !important;
+}
+
+.mat-column-difficultyColumn {
+    flex: 0 0 60px !important;
+    white-space: unset !important;
+}
+
+.mat-column-actionsColumn {
+    flex: 0 0 50px !important;
+}
+
+.highlight{
+    background: lightyellow; 
+}
+
+mat-row:not(.highlight):hover {
+    background: #f0f0f0;
+}

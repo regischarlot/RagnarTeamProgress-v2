@@ -1,0 +1,15 @@
+<div class="TopSidenavContainer">
+
+    <mat-sidenav-container class="TopSidenavContainer" autosize>
+        <mat-sidenav #sidenav mode="side" opened [fixedInViewport]="0" [fixedTopGap]="0" [fixedBottomGap]="0" style="border: 0px; background:dimgray;">
+            <app-side-navigation-widget></app-side-navigation-widget>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <main class="container" style="width:100%; background-color: white;">
+                <router-outlet></router-outlet>
+            </main>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>
