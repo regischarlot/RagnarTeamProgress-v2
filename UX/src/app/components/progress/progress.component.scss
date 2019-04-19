@@ -10,11 +10,27 @@
 .mat-row {
     height: 30px !important;
     min-height: 30px !important;
-    border-bottom-width: 0;
+    border-bottom-width: 1;
 }
 
-.mat-column-legMapColumn {
-    flex: 0 0 60px !important;
+.highlight{
+    background: #ffad77; 
+}
+    
+.is-white:not(.highlight) {
+    background: white; 
+}
+    
+.is-green:not(.highlight) {
+    background: #cbffca; 
+}
+    
+mat-row:not(.highlight):hover {
+    background: #f0f0f0;
+}
+
+.mat-column-legOrderColumn {
+    flex: 0 0 30px !important;
     white-space: unset !important;
 }
 
@@ -33,10 +49,67 @@
     flex: 0 0 50px !important;
 }
 
-.highlight{
-    background: lightyellow; 
+.mat-column-truePaceColumn {
+    min-width: 60px !important;
+    max-width: 60px;
+    width:60px;
 }
 
-mat-row:not(.highlight):hover {
-    background: #f0f0f0;
+.mat-column-paceColumn {
+    min-width: 60px !important;
+    max-width: 60px;
+    width:60px;
 }
+
+.mat-column-startTimeColumn {
+    min-width: 80px !important;
+    max-width: 80px;
+    width:80px;
+}
+
+.mat-column-endTimeColumn {
+    min-width: 80px !important;
+    max-width: 80px;
+    width:80px;
+}
+
+.mat-column-legTimeColumn {
+    min-width: 80px !important;
+    max-width: 80px;
+    width:80px;
+}
+
+
+/deep/ .mat-form-field {
+    width:100% !important; 
+    padding-right: 4px;
+  }
+  
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  
+  input[type=number] {
+      -moz-appearance:textfield;
+  }
+  
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-clear-button {
+      display: none;
+      -webkit-appearance: none;
+  }
+  
+  .mat-input-element:disabled {
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  :host /deep/ .mat-select-disabled .mat-select-value-text {
+    color: rgba(0, 0, 0, 1) !important;
+  }
+  
+  :host /deep/ .mat-form-field-disabled .mat-form-field-underline {
+    background-image: none !important;
+  }
+  
