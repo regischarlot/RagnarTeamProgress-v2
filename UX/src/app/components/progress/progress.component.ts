@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { RagnarService } from '../../service/RagnarService.service';
-import { LegRunner } from 'src/app/models/legRunner';
 import { TableDataSource, ValidatorService } from 'angular4-material-table';
 import { LegRunnerValidatorService } from './leg-runner-validator.service';
+
 import { DataFoundation } from 'src/app/models/dataFoundation';
+import { LegRunner } from 'src/app/models/legRunner';
 import { Runner } from 'src/app/models/runner';
+import { DataSource } from '@angular/cdk/table';
 
 @Component({
   selector: 'app-progress',
@@ -18,25 +20,29 @@ export class ProgressComponent implements OnInit {
   private selectedRowIndex: number = -1;
   private editedRow = null;
   private dataSource: TableDataSource<LegRunner>;
-  private _legRunners: LegRunner[];
   private _foundation: DataFoundation;
 
-  constructor(public ragnarService: RagnarService, private legRunnerValidator: ValidatorService) {
-    this.ragnarService.GetFoundation().subscribe(data => { 
-      if (data != null) {
-        this._foundation = data.data;
-        this._legRunners = this._foundation.legRunners; 
-        this.dataSource = new TableDataSource<any>(data.data.legRunners, LegRunner, this.legRunnerValidator);
-      };
-    });
+  //@ViewChild(MatTable) table: MatTable<LegRunner>;
+
+  constructor(public ragnarService: RagnarService, private legRunnerValidator: ValidatorService, private changeDetectorRefs: ChangeDetectorRef) {
+    this.LoadData();
   }
 
   ngOnInit() {
   }
-  
+
+  public LoadData() {
+    this.ragnarService.GetFoundation().subscribe(data => { 
+      if (data != null) {
+        this._foundation = data.data;
+        this.dataSource = new TableDataSource<LegRunner>(this._foundation.legRunners, LegRunner, this.legRunnerValidator);
+        this.changeDetectorRefs.detectChanges();
+      };
+    });
+  }
+
   public highlight(row) {
     this.selectedRowIndex = row.id;
-
   }
 
   public EditRow(row){
@@ -53,33 +59,37 @@ export class ProgressComponent implements OnInit {
 
   public SaveRowEdit(row){
     row.confirmEditCreate();
-  }
+    this.AdjustRow(row);
+    }
 
   public CancelRowEdit(row){
     row.cancelOrDelete();
   }
 
-  public onRunnerChange($event, runner){
-    var r: Runner =  this._foundation.runners.find(x => x.id == $event.value);
-    if (r && this.editedRow){
-      if (runner == 1)
-      {
-        this.editedRow.originalData.runner1Id = $event.value;
-        this.editedRow.originalData.runner1Name = r.displayName;
-        this.editedRow.originalData.runner1Pace = r.pace;
-        this.editedRow.originalData.runner1Cell = r.cell;
-      }
-      if (runner == 2)
-      {
-        this.editedRow.originalData.runner2Id = $event.value;
-        this.editedRow.originalData.runner2Name = r.displayName;
-        this.editedRow.originalData.runner2Pace = r.pace;
-        this.editedRow.originalData.runner2Cell = r.cell;
-      }
-      this.editedRow.originalData.pace = Math.min(this.editedRow.originalData.runner1Pace, this.editedRow.originalData.runner2Pace);
+  public AdjustRow(row){
 
+    /*
+    var n: number = this.dataSource.currentData.find(x => x == row);
 
+    this.dataSource.currentData[n].difficulty = 5;
+    this.table.renderRows();
+
+    var r: Runner = this._foundation.runners.find(x => x.id == row.currentData.runner1Id);
+    if (r != null)
+    {
+      row.currentData.runner1Name = r.displayName;
+      row.currentData.runner1Pace = r.pace;
+      row.currentData.runner1Cell = r.cell;
     }
+    r = this._foundation.runners.find(x => x.id == row.currentData.runner2Id);
+    if (r != null)
+    {
+      row.currentData.runner2Name = r.displayName;
+      row.currentData.runner2Pace = r.pace;
+      row.currentData.runner2Cell = r.cell;
+    }
+    row.currentData.pace = Math.min(row.currentData.runner1Pace, row.currentData.runner2Pace);
+    */
   }
 }
 

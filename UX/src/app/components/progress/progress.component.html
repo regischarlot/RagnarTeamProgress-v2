@@ -1,4 +1,4 @@
-<div style="width:100%;">
+<div style="width:100%; height:100%;">
   <div style="height: 45px;">
     &nbsp;
   </div>
@@ -19,14 +19,20 @@
 
     <ng-container matColumnDef="difficultyColumn">
         <mat-header-cell *matHeaderCellDef> Difficulty </mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.currentData.difficulty}}</mat-cell>
+        <mat-cell *matCellDef="let row">
+            <img src='/assets/icon_favourites.gif' *ngIf="row.currentData.difficulty >= 1">
+            <img src='/assets/icon_favourites.gif' *ngIf="row.currentData.difficulty >= 2">
+            <img src='/assets/icon_favourites.gif' *ngIf="row.currentData.difficulty >= 3">
+            <img src='/assets/icon_favourites.gif' *ngIf="row.currentData.difficulty >= 4">
+            <img src='/assets/icon_favourites.gif' *ngIf="row.currentData.difficulty >= 5">
+        </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="runner1Name">
         <mat-header-cell *matHeaderCellDef> Runner 1 </mat-header-cell>
         <mat-cell *matCellDef="let row"> 
             <mat-form-field floatLabel='never'>
-                <mat-select [formControl]="row.validator.controls['runner1Id']" (selectionChange)="onRunnerChange($event, 1)">
+                <mat-select [formControl]="row.validator.controls['runner1Id']">
                     <mat-option *ngFor="let r of _foundation.runners" [value]="r.id">{{r.displayName}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -37,7 +43,7 @@
         <mat-header-cell *matHeaderCellDef> Runner 2 </mat-header-cell>
         <mat-cell *matCellDef="let row"> 
             <mat-form-field floatLabel='never'>
-                <mat-select [formControl]="row.validator.controls['runner2Id']" (selectionChange)="onRunnerChange($event, 2)">
+                <mat-select [formControl]="row.validator.controls['runner2Id']">
                     <mat-option *ngFor="let r of _foundation.runners" [value]="r.id">{{r.displayName}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -92,7 +98,7 @@
 
     <ng-container matColumnDef="actionsColumn">
         <mat-header-cell *matHeaderCellDef>
-            <mat-icon>edit</mat-icon>
+            <button mat-icon-button (click)="LoadData()"><mat-icon>refresh</mat-icon></button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
         <button *ngIf="!row.editing && selectedRowIndex == row.id" mat-icon-button focusable="false" (click)="EditRow(row)">

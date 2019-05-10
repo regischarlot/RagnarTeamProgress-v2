@@ -71,20 +71,20 @@
   
     <ng-container matColumnDef="actionsColumn">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button (click)="dataSource.createNew()"><mat-icon>playlist_add</mat-icon></button>
-        <button mat-icon-button (click)="LoadData()"><mat-icon>refresh</mat-icon></button>
-    </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button *ngIf="!row.editing && selectedRowIndex == row.id" mat-icon-button focusable="false" (click)="EditRow(row)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button *ngIf="row.editing" mat-icon-button focusable="false" (click)="SaveRowEdit(row)">
-          <mat-icon>save_alt</mat-icon>
-        </button>
-        <button *ngIf="row.editing" mat-icon-button focusable="false" (click)="CancelRowEdit(row)">
-          <mat-icon>clear</mat-icon>
-        </button>
-      </mat-cell>
+            <button mat-icon-button (click)="dataSource.createNew()"><mat-icon>playlist_add</mat-icon></button>
+            <button mat-icon-button (click)="LoadData()"><mat-icon>refresh</mat-icon></button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button *ngIf="!row.editing && selectedRowIndex == row.id" mat-icon-button focusable="false" (click)="EditRow(row)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button *ngIf="row.editing" mat-icon-button focusable="false" (click)="SaveRowEdit(row)">
+                <mat-icon>save_alt</mat-icon>
+            </button>
+            <button *ngIf="row.editing" mat-icon-button focusable="false" (click)="CancelRowEdit(row)">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </mat-cell>
     </ng-container>
   
   

@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RunnersComponent } from './components/runners/runners.component';
@@ -19,6 +16,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SideNavigationWidgetComponent } from './components/side-navigation-widget/side-navigation-widget.component';
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LegComponent } from './components/leg/leg.component';
+
+// import Wijmo modules
+import { WjGridModule } from 'wijmo/wijmo.angular2.grid';
+import { WjChartModule } from 'wijmo/wijmo.angular2.chart';
+
+// apply Wijmo license key
+import { setLicenseKey } from 'wijmo/wijmo';
+setLicenseKey('your license key goes here');
 
 
 @NgModule({
@@ -29,7 +35,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ProgressComponent,
     PageNotFoundComponent,
     DifficultyPipe,
-    SideNavigationWidgetComponent
+    SideNavigationWidgetComponent,
+    LegComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +47,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     MaterialModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAzH4SXmUXIy51Du7UnlcNdqYIFYTjWRJY'
+      apiKey: 'AIzaSyCaxjQCTRyWtTIYwHAfVQNSZxYLH_HS_Sk'
     }),
-    FlexLayoutModule
+    FlexLayoutModule,
+    WjGridModule,
+    WjChartModule
   ],
   providers: [RagnarService, ApiService],
   bootstrap: [AppComponent]
