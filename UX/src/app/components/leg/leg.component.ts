@@ -29,8 +29,14 @@ export class LegComponent implements OnInit {
     this.ragnarService.GetFoundation().subscribe(data => {  
       if (data != null) {
         this._foundation = data.data;
-        this._data = new CollectionView(data.data.legRunners);
-        this._runnerDict = new wjcGrid.DataMap(this._foundation.runners, "id", "displayName");
+        this._runnerDict = new wjcGrid.DataMap(data.data.runners, "id", "displayName");
+        // Leg Runners
+        let lr: LegRunner[] = data.data.legRunners;
+        lr.forEach(function(value: LegRunner) {
+          value.startTime = new Date(value.startTime);
+          value.endTime = new Date(value.endTime);
+        });
+        this._data = new CollectionView(lr);
       } 
     });
   }
@@ -44,6 +50,14 @@ export class LegComponent implements OnInit {
     cell.innerHTML = html;
   }
 
+  public onItemFormatter(panel, r, c, cell) {
+    //check if it is a data cell, then check to see if it is the 'sales' column
+    if (panel.cellType == wjcGrid.CellType.Cell) {
+      if (panel.columns[c].binding == "difficulty")
+        cell.style.color = "gold";
+    }
+  }
+
   initializeGrid(flex: wjcGrid.FlexGrid) {
     flex.formatItem.addHandler((s: any, e: wjcGrid.FormatItemEventArgs) => {
         if (e.panel == s.cells) {
@@ -51,6 +65,14 @@ export class LegComponent implements OnInit {
             switch (s.columns[e.col].binding) {
                 case 'difficulty':
                     this._formatRatingCell(e.cell, item.difficulty);
+                break;
+                case 'startTime':
+                  if (!item.startTimeEstimated)
+                    e.cell.style.fontWeight = "900";
+                break;
+                case 'endTime':
+                  if (!item.endTimeEstimated)
+                    e.cell.style.fontWeight = "900";
                 break;
             }
         }

@@ -1,4 +1,4 @@
-<div style="width:100%; height:100%;">
+<div style="width:100%; height:100%; margin:4px;">
   <div style="height: 45px;">
     &nbsp;
   </div>
@@ -7,19 +7,20 @@
       [headersVisibility]="'Column'" [autoGenerateColumns]="false"
       [selectionMode]="'Row'"
       (initialized)="initializeGrid(flex)"
+      [itemFormatter]="onItemFormatter"
       >
 
     <wj-flex-grid-column binding="id" header="ID" [width]="40" [align]="'center'" [isReadOnly]="true"></wj-flex-grid-column>
     <wj-flex-grid-column binding="distance" header="Distance" [width]="50" [format]="'n1'" [isReadOnly]="true"></wj-flex-grid-column>
-    <wj-flex-grid-column binding="difficulty" header="Difficulty" [cssClass]="'cell-rating'" [width]="70" [align]="'left'" [isReadOnly]="true"></wj-flex-grid-column>
+    <wj-flex-grid-column binding="difficulty" header="Difficulty" [width]="70" [align]="'left'" [isReadOnly]="true"></wj-flex-grid-column>
     <wj-flex-grid-column binding="runner1Id" header="Runner 1" width="2*" [align]="'left'" [dataMap]="_runnerDict" [isReadOnly]="false"></wj-flex-grid-column>
     <wj-flex-grid-column binding="runner2Id" header="Runner 2" width="2*" [align]="'left'" [dataMap]="_runnerDict" [isReadOnly]="false"></wj-flex-grid-column>
     <wj-flex-grid-column binding="runner1Cell" header="Cell" width="*" [isReadOnly]="true"></wj-flex-grid-column>
     <wj-flex-grid-column binding="pace" header="Pace" [width]="70" [isReadOnly]="true" [format]="'n2'"></wj-flex-grid-column>
-    <wj-flex-grid-column binding="startTime" header="Start" [width]="100" [isReadOnly]="false" [format]="'MM/dd/yyyy'"></wj-flex-grid-column>
-    <wj-flex-grid-column binding="endTime" header="End" [width]="100" [isReadOnly]="false"></wj-flex-grid-column>
-    <wj-flex-grid-column binding="legTime" header="Leg Time" [width]="100" [isReadOnly]="true"></wj-flex-grid-column>
-    <wj-flex-grid-column binding="truePace" header="True Pace" [width]="80" [isReadOnly]="true"></wj-flex-grid-column>  
+    <wj-flex-grid-column binding="startTime" header="Start" [width]="100" [isReadOnly]="false" [align]="'right'" [format]="'HH:mm:ss'"></wj-flex-grid-column>
+    <wj-flex-grid-column binding="endTime" header="End" [width]="100" [isReadOnly]="false" [align]="'right'" [format]="'HH:mm:ss'"></wj-flex-grid-column>
+    <wj-flex-grid-column binding="legTime" header="Leg Time" [width]="100" [isReadOnly]="true" [align]="'right'"></wj-flex-grid-column>
+    <wj-flex-grid-column binding="truePace" header="True Pace" [width]="80" [isReadOnly]="true" [align]="'right'"></wj-flex-grid-column>  
   </wj-flex-grid>
 
 </div>
